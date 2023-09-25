@@ -1,6 +1,9 @@
 #sqlite3
 sqlite3.db
 
+#testing file
+copy-reenrolldb_test.py
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]

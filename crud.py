@@ -6,14 +6,11 @@ from sqlalchemy.orm import Session
 from models import Environment
 
 
-# from . import models, schemas
-# from reenrolldb.models import Environment, User, Submission, SubmissionService, SubmissionCourse, Service, Course
-
-
 class ModelAlreadyExistsError(Exception):
     pass
 
 
+# Customized Error Message
 class RecordNotFoundError(Exception):
     def __int__(self, message):
         super().__init__(message)

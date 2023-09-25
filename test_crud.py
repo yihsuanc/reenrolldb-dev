@@ -10,13 +10,13 @@ session = SessionLocal()
 
 
 class CrudTest(TestCase):
+    # Create database and tables
     # def setUp(self):
-    #     # Create database and tables
     #     Base.metadata.create_all(bind=engine)
     #     pass
 
+    # Remove database
     # def tearDown(self):
-    #     # Remove database
     #     session = SessionLocal()
     #     session.close()
     #     Base.metadata.drop_all(bind=engine)
@@ -27,7 +27,7 @@ class CrudTest(TestCase):
     """
 
     def test_create_user(self):
-        # Generate an uuid as user_id
+        # Generate an uuid as user_id for test
         user_id = str(uuid.uuid4())
         preferred_username = "user-" + user_id.split("-")[0]
 
@@ -63,17 +63,14 @@ class CrudTest(TestCase):
 
     def test_get_maximum_users(self):
         users = get_users(session, skip=0, limit=100)
-        # print("Number of records:", len(users))
         self.assertEqual(len(users), 100, "The number of records are not match.")
 
     def test_get_limited_users(self):
         users = get_users(session, skip=0, limit=28)
-        # print("Number of records:", len(users))
         self.assertEqual(len(users), 28, "The number of records are not match.")
 
     def test_get_pagination_users(self):
         users = get_users(session, skip=100, limit=100)
-        # print("Number of records:", len(users))
         self.assertGreater(len(users), 1, "The number of records are not match.")
 
     """
@@ -81,7 +78,7 @@ class CrudTest(TestCase):
     """
 
     def test_create_course(self):
-        # Mock course data
+        # Mock course id for test
         course_id = random.randint(1, 10000)
 
         cs_135 = {
@@ -139,6 +136,7 @@ class CrudTest(TestCase):
     """
 
     def test_create_service(self):
+        # Mock service id for test
         service_id = random.randint(1, 10000)
         service_name = f"linux_remote_container_{service_id}"
 
@@ -157,11 +155,6 @@ class CrudTest(TestCase):
         self.assertEqual(res.name, expected_name, "The service name is not match.")
         self.assertEqual(res.id, expected_id, "The service id is not match.")
         self.assertEqual(res.display_name, expected_display_name, "The service display name is not match.")
-
-        # for s in service.__dir__():
-        #     value = getattr(service, s)
-        #     if not s.startswith("_"):
-        #         print(f"{s}: {value}")
 
     def test_get_service(self):
         service_name = "linux_remote_container_408"
@@ -193,7 +186,9 @@ class CrudTest(TestCase):
     """
 
     def test_create_submission(self):
+        # Mock user id for test
         user_id = random.randint(1, 100)
+
         user = get_users(db=session, skip=0, limit=100)
         course = get_courses(db=session, skip=0, limit=1)
         service = get_services(db=session, skip=0, limit=1)
@@ -221,7 +216,9 @@ class CrudTest(TestCase):
     """
 
     def test_create_environment(self):
+        # Mock user id for test
         user_id = random.randint(1, 100)
+
         environment_id = data.env_dict["id"] + '_' + str(random.randint(1, 1000))
 
         user = get_users(db=session, skip=0, limit=100)
