@@ -14,7 +14,7 @@ pytest==7.4.0
 pytest-mock==3.11.1
 python-dotenv==1.0.0
 requests==2.31.0
-SQLAlchemy==2.0.20
+SQLAlchemy==2.0.22
 tomli==2.0.1
 typing_extensions==4.7.1
 urllib3==2.0.5
